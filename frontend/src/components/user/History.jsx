@@ -23,6 +23,7 @@ import {
   Share2,
   Download,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const tripHistoryData = [
   {
@@ -162,9 +163,12 @@ const TripCard = ({ trip }) => {
         </div>
 
         <div className="flex gap-2">
-          <button className="w-full bg-cyan-600 text-white font-semibold py-2 px-3 rounded-lg hover:bg-cyan-700 transition text-sm">
+          <Link
+            to={`/my-trips/${trip.id}`}
+            className="w-full bg-cyan-600 text-white font-semibold py-2 px-3 rounded-lg hover:bg-cyan-700 transition text-sm"
+          >
             View Details
-          </button>
+          </Link>
           <button className="p-2 bg-gray-200 dark:bg-gray-700 rounded-lg">
             <Share2 size={16} />
           </button>

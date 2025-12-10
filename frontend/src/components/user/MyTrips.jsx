@@ -24,6 +24,7 @@ import {
   Users,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import CreateTripModal from "./CreateTripModal";
 
 const tripsData = [
   {
@@ -197,6 +198,7 @@ const MyTrips = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("all");
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   const filteredTrips = tripsData.filter((trip) => {
     const matchesSearch =
@@ -220,7 +222,10 @@ const MyTrips = () => {
                 Your smart travel companion for managing all adventures.
               </p>
             </div>
-            <button className="mt-4 md:mt-0 flex items-center gap-2 bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-cyan-700 transition">
+            <button
+              onClick={() => setShowCreateModal(true)} // Open modal
+              className="mt-4 md:mt-0 flex items-center gap-2 bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-cyan-700 transition"
+            >
               <Plus size={20} />
               Create New Trip
             </button>
@@ -288,6 +293,11 @@ const MyTrips = () => {
           )}
         </div>
       </main>
+
+      <CreateTripModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+      />
     </div>
   );
 };

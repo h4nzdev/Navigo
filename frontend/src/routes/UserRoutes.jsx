@@ -9,6 +9,7 @@ import AccountSettings from "../components/user/menu/AccountSettings";
 import UserLayout from "../layout/UserLayout";
 import UserDashboard from "../components/user/UserDashboard";
 import MyTripDetails from "../components/user/MyTripsDetails";
+import Subscription from "../components/user/Subscription";
 
 const UserRoutes = () => {
   return (
@@ -59,6 +60,14 @@ const UserRoutes = () => {
           element={
             <UserLayout>
               <Plan />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/subscription"
+          element={
+            <UserLayout>
+              <Subscription />
             </UserLayout>
           }
         />

@@ -21,6 +21,7 @@ import {
   ArrowRight,
   Search,
 } from "lucide-react";
+import FlightsModal from "./FlightModal";
 
 const popularDestinations = [
   "New York",
@@ -37,6 +38,7 @@ const Plan = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [tripType, setTripType] = useState("round-trip");
   const [destination, setDestination] = useState("");
+  const [showFlightsModal, setShowFlightsModal] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -181,7 +183,10 @@ const Plan = () => {
                 </InputGroup>
               </div>
             </div>
-            <button className="w-full flex items-center justify-center gap-3 bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-cyan-700 transition shadow-lg">
+            <button
+              onClick={() => setShowFlightsModal(true)}
+              className="w-full flex items-center justify-center gap-3 bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-cyan-700 transition shadow-lg"
+            >
               <Search size={20} />
               Search Flights
             </button>
@@ -234,6 +239,17 @@ const Plan = () => {
           </div>
         </div>
       </main>
+      <FlightsModal
+        isOpen={showFlightsModal}
+        onClose={() => setShowFlightsModal(false)}
+        searchParams={{
+          from: "LAX", // You can get these from your form state
+          to: destination,
+          date: "Oct 15, 2025", // Get from your form
+          travelers: "2",
+          class: "Economy",
+        }}
+      />
     </div>
   );
 };
