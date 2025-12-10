@@ -59,7 +59,7 @@ const recentAdventures = [
     title: "Mountain Adventure in Colorado",
     description:
       "Experience the breathtaking beauty of Colorado mountains with guided hiking trips and camping.",
-    price: "$1,200",
+    price: "₱1,200",
     duration: "5 days",
     distance: "300mi",
     tags: ["Hiking", "Camping", "Photography"],
@@ -69,7 +69,7 @@ const recentAdventures = [
     title: "Beach Paradise in Maldives",
     description:
       "Dive into crystal clear waters, explore vibrant coral reefs, and relax in overwater bungalows.",
-    price: "$2,500",
+    price: "₱2,500",
     duration: "7 days",
     distance: "8500mi",
     tags: ["Swimming", "Snorkeling", "Island Hopping"],

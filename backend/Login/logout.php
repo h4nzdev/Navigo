@@ -13,6 +13,6 @@ if (isset($_COOKIE[session_name()])) {
 }
 
 // Redirect to home page
-header('Location: ../Index.php');
+header('Location: ../Index.php');`
 exit();
 ?>
