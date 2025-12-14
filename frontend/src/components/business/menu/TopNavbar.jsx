@@ -167,7 +167,7 @@ const TopNavbar = ({
                   {getUserInitials()}
                 </div>
                 <div className="text-left">
-                  <div className="font-semibold text-sm">
+                  <div className="font-semibold text-white text-sm">
                     {userData
                       ? `${userData.first_name} ${userData.last_name}`
                       : businessData?.business_name || "Business"}
@@ -191,7 +191,7 @@ const TopNavbar = ({
                         {getUserInitials()}
                       </div>
                       <div>
-                        <div className="font-semibold text-sm">
+                        <div className="font-semibold text-white text-sm">
                           {userData
                             ? `${userData.first_name} ${userData.last_name}`
                             : businessData?.business_name || "Business"}

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { X, Plane, MapPin, Calendar, Users, DollarSign } from "lucide-react";
 import { createSchedule } from "../../../services/scheduleService";
+import { AuthContext } from "../../../context/AuthContext";
 
-const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
-  console.log(businessId);
+const CreateScheduleModal = ({ isOpen, onClose }) => {
+  const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
-    business_id: businessId,
     from: "",
     to: "",
     type: "airline",
@@ -15,7 +15,6 @@ const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
     seats: "",
     aircraft_type: "",
   });
-
   const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
@@ -31,13 +30,17 @@ const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      // API call will go here
-      const res = await createSchedule(formData);
+    const payload = {
+      ...formData,
+      business_id: user._id, // ✅ GUARANTEED VALUE
+    };
 
-      // Reset form and close
+    console.log("Payload sent:", payload);
+
+    try {
+      await createSchedule(payload);
+
       setFormData({
-        business_id: businessId,
         from: "",
         to: "",
         type: "airline",
@@ -96,7 +99,7 @@ const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
                 value={formData.from}
                 onChange={handleChange}
                 placeholder="e.g., Manila (MNL)"
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full text-white px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
             </div>
@@ -113,7 +116,7 @@ const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
                 value={formData.to}
                 onChange={handleChange}
                 placeholder="e.g., Cebu (CEB)"
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-4 py-2 text-white bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
             </div>
@@ -129,7 +132,7 @@ const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
                 name="departure_time"
                 value={formData.departure_time}
                 onChange={handleChange}
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-4 py-2 text-white bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
             </div>
@@ -145,7 +148,7 @@ const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
                 name="arrival_time"
                 value={formData.arrival_time}
                 onChange={handleChange}
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-4 py-2 text-white bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
             </div>
@@ -163,7 +166,7 @@ const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
                 onChange={handleChange}
                 min="1"
                 placeholder="e.g., 150"
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-4 py-2 text-white bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
             </div>
@@ -182,7 +185,7 @@ const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
                 min="0"
                 step="0.01"
                 placeholder="e.g., 2500.00"
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-4 py-2 text-white bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
             </div>
@@ -194,7 +197,7 @@ const CreateScheduleModal = ({ isOpen, onClose, businessId }) => {
                 name="aircraft_type"
                 value={formData.aircraft_type}
                 onChange={handleChange}
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-4 py-2 text-white bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
               >
                 <option value="">Select aircraft</option>
                 <option value="Boeing 737">Boeing 737</option>
