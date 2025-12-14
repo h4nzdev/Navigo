@@ -8,6 +8,8 @@ import userAuthRouter from "./routes/authentication/userAuthRoutes.js";
 import tripRouter from "./routes/tripRoutes.js";
 import exploreRouter from "./routes/exploreRoutes.js";
 import businessRouter from "./routes/businessRoutes.js";
+import scheduleRouter from "./routes/scheduleRoutes.js";
+import bookingRequestRouter from "./routes/bookingRequestRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -30,6 +32,8 @@ app.use("/api/user", userRouter);
 app.use("/api/trip", tripRouter);
 app.use("/api/explore", exploreRouter);
 app.use("/api/business", businessRouter);
+app.use("/api/schedule", scheduleRouter);
+app.use("/api/booking-request", bookingRequestRouter);
 
 //Authnetication
 app.use("/api/user/auth", userAuthRouter);
