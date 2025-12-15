@@ -1,6 +1,7 @@
 import axios from "axios";
+import api from "../config/api";
 
-const API_URL = "http://localhost:3000/api/schedule";
+const API_URL = `${api}/schedule`;
 
 // Create schedule
 export const createSchedule = async (scheduleData) => {

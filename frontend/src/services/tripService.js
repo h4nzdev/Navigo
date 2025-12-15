@@ -1,7 +1,8 @@
 // src/services/tripService.js
 import axios from "axios";
+import api from "../config/api";
 
-const API_URL = "http://localhost:3000/api/trip";
+const API_URL = `${api}/trip`;
 
 // Get all trips for a user
 export const getUserTrips = async (userId) => {

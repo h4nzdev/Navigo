@@ -1,7 +1,8 @@
 // src/services/exploreService.js
 import axios from "axios";
+import api from "../config/api";
 
-const API_URL = "http://localhost:3000/api/explore";
+const API_URL = `${api}/explore`;
 
 // Get all destinations
 export const getAllDestinations = async () => {

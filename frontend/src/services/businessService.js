@@ -1,7 +1,8 @@
 // src/services/businessService.js
 import axios from "axios";
+import api from "../config/api";
 
-const API_URL = "http://localhost:3000/api/business";
+const API_URL = `${api}/business`;
 
 // Register new business
 export const registerBusiness = async (businessData) => {

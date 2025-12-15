@@ -1,7 +1,8 @@
 // src/services/settingsService.js
 import axios from "axios";
+import api from "../../config/api";
 
-const API_URL = "http://localhost:3000/api";
+const API_URL = api;
 
 export const getSettings = async (userId) => {
   try {
