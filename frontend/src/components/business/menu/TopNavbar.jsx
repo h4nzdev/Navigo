@@ -4,6 +4,7 @@ import {
   Bell,
   Settings,
   Moon,
+  Sun,
   ChevronDown,
   Building,
   User,
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 import { AuthContext } from "../../../context/AuthContext";
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
+import { useTheme } from "../../../context/ThemeContext";
 
 const TopNavbar = ({
   businessData,
@@ -32,6 +34,7 @@ const TopNavbar = ({
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const { isDark, toggleTheme } = useTheme();
 
   // Business navigation items with paths
   const businessNavItems = [
@@ -143,8 +146,12 @@ const TopNavbar = ({
           </div>
 
           <div className="flex items-center space-x-4">
-            <button className="p-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 rounded-lg">
-              <Moon size={20} />
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="p-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 rounded-lg"
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <button className="p-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 rounded-lg">
               <Settings size={20} />

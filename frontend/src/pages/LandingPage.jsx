@@ -24,9 +24,15 @@ import {
 } from "lucide-react";
 import logo from "../assets/NaviGo_Logo.png";
 import { Link } from "react-router-dom";
+import { Sun, Moon } from "lucide-react";
+import AuthRoleSelectorModal from "../components/auth/AuthRoleSelectorModal";
+import { useTheme } from "../context/ThemeContext";
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [authMode, setAuthMode] = useState("login");
+  const [isAuthSelectorOpen, setIsAuthSelectorOpen] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   const startJourney = () => {
     document
@@ -153,18 +159,34 @@ const LandingPage = () => {
             </div>
 
             <div className="hidden md:flex items-center space-x-4">
-              <Link
-                to="/login/user"
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="p-2 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 mr-2"
+                aria-label="Toggle theme"
+              >
+                {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setAuthMode("login");
+                  setIsAuthSelectorOpen(true);
+                }}
                 className="px-4 py-2 font-medium hover:text-cyan-600 transition-colors"
               >
                 Login
-              </Link>
-              <Link
-                to="/login/business"
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setAuthMode("signup");
+                  setIsAuthSelectorOpen(true);
+                }}
                 className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 rounded-full font-semibold transition-colors"
               >
                 Get Started
-              </Link>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -208,11 +230,40 @@ const LandingPage = () => {
                 Contact
               </a>
               <div className="pt-4 space-y-2">
-                <button className="w-full px-4 py-2 font-medium hover:text-cyan-600 transition-colors border border-gray-300 rounded-lg">
-                  <Link to="/login/user">Login</Link>
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className="w-full flex items-center justify-center px-4 py-2 font-medium border border-gray-300 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-200"
+                >
+                  {isDark ? (
+                    <>
+                      <Sun className="w-4 h-4 mr-2" /> Light Mode
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="w-4 h-4 mr-2" /> Dark Mode
+                    </>
+                  )}
                 </button>
-                <button className="w-full bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
-                  <Link to="/login/business">Get Started</Link>
+                <button
+                  type="button"
+                  className="w-full px-4 py-2 font-medium hover:text-cyan-600 transition-colors border border-gray-300 rounded-lg"
+                  onClick={() => {
+                    setAuthMode("login");
+                    setIsAuthSelectorOpen(true);
+                  }}
+                >
+                  Login
+                </button>
+                <button
+                  type="button"
+                  className="w-full bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
+                  onClick={() => {
+                    setAuthMode("signup");
+                    setIsAuthSelectorOpen(true);
+                  }}
+                >
+                  Get Started
                 </button>
               </div>
             </div>
@@ -552,6 +603,12 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
+
+      <AuthRoleSelectorModal
+        isOpen={isAuthSelectorOpen}
+        mode={authMode}
+        onClose={() => setIsAuthSelectorOpen(false)}
+      />
     </div>
   );
 };
