@@ -5,6 +5,8 @@ import BusinessLayout from "../layout/BusinessLayout";
 import FlightSchedules from "../components/business/FlightSchedules";
 import Analytics from "../components/business/Analytics";
 import PendingRequests from "../components/business/PendingRequests";
+import BusinessBilling from "../components/business/BusinessBilling";
+import BusinessProfile from "../components/business/BusinessProfile";
 
 const BusinessRoutes = () => {
   return (
@@ -16,6 +18,22 @@ const BusinessRoutes = () => {
           element={
             <BusinessLayout>
               <BusinessDashboard />
+            </BusinessLayout>
+          }
+        />
+        <Route
+          path="/business/billing"
+          element={
+            <BusinessLayout>
+              <BusinessBilling />
+            </BusinessLayout>
+          }
+        />
+        <Route
+          path="/business/profile"
+          element={
+            <BusinessLayout>
+              <BusinessProfile />
             </BusinessLayout>
           }
         />

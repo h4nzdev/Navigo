@@ -87,7 +87,10 @@ const TopNavbar = ({
     {
       label: "Profile",
       icon: <User size={18} />,
-      onClick: () => setIsDropdownOpen(false),
+      onClick: () => {
+        navigate("/business/profile");
+        setIsDropdownOpen(false);
+      },
     },
     {
       label: "Settings",
@@ -97,18 +100,11 @@ const TopNavbar = ({
     {
       label: "Billing",
       icon: <CreditCard size={18} />,
-      onClick: () => setIsDropdownOpen(false),
+      onClick: () => {
+        navigate("/business/billing");
+        setIsDropdownOpen(false);
+      },
       badge: userData?.subscription_plan || "Premium",
-    },
-    {
-      label: "Security",
-      icon: <Shield size={18} />,
-      onClick: () => setIsDropdownOpen(false),
-    },
-    {
-      label: "Help & Support",
-      icon: <HelpCircle size={18} />,
-      onClick: () => setIsDropdownOpen(false),
     },
     {
       label: "Logout",

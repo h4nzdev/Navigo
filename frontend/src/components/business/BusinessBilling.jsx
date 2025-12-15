@@ -1,6 +1,6 @@
 import React from "react";
 
-const Subscription = () => {
+const BusinessBilling = () => {
   const plans = [
     {
       name: "Basic",
@@ -164,4 +164,4 @@ const Subscription = () => {
   );
 };
 
-export default Subscription;
+export default BusinessBilling;
